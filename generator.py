@@ -71,5 +71,5 @@ for i, state in enumerate(states):
 df = pd.read_csv('cities.csv', sep=';', encoding='latin-1').iloc[:, 0]
 
 for row in df:
-    print("INSERT INTO tb_cidade(nome_cidade, id_estado)V\nVALUES ('{}', {});\n".format(
+    print("INSERT INTO tb_cidade(nome_cidade, id_estado)\nVALUES ('{}', {});\n".format(
         row[2:], ufs.index(row[:2]) + 1))
