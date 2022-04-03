@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+import csv
+
+import pandas as pd
 
 states = [
     'Acre',
@@ -60,13 +63,13 @@ ufs = [
     'DF'
 ]
 
-for i, state in enumerate(states):
-    print("INSERT INTO tb_estado(nome_estado, sigla_estado)\nVALUES ('{}', '{}');\n".format(
-        state, ufs[i]))
+# for i, state in enumerate(states):
+#     print("INSERT INTO tb_estado(nome_estado, sigla_estado)\nVALUES ('{}', '{}');\n".format(
+#         state, ufs[i]))
 
 
-cities = []
+df = pd.read_csv('cities.csv', sep=';', encoding='latin-1').iloc[:, 0]
 
-for i, city in enumerate(cities):
-    print("INSERT INTO tb_cidade(nome_cidade, id_estado)V\nVALUES ('{}', '{}');\n".format(
-        city, i % 10 + 1))
+for row in df:
+    print("INSERT INTO tb_cidade(nome_cidade, id_estado)V\nVALUES ('{}', {});\n".format(
+        row[2:], ufs.index(row[:2]) + 1))
