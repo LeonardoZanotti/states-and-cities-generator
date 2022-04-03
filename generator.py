@@ -63,9 +63,9 @@ ufs = [
     'DF'
 ]
 
-# for i, state in enumerate(states):
-#     print("INSERT INTO tb_estado(nome_estado, sigla_estado)\nVALUES ('{}', '{}');\n".format(
-#         state, ufs[i]))
+for i, state in enumerate(states):
+    print("INSERT INTO tb_estado(nome_estado, sigla_estado)\nVALUES ('{}', '{}');\n".format(
+        state, ufs[i]))
 
 
 df = pd.read_csv('cities.csv', sep=';', encoding='latin-1').iloc[:, 0]
