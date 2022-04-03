@@ -64,12 +64,12 @@ ufs = [
 ]
 
 for i, state in enumerate(states):
-    print("INSERT INTO tb_estado(nome_estado, sigla_estado)\nVALUES (\"{}\", \"{}\");\n".format(
+    print("INSERT INTO tb_estado(nome_estado, sigla_estado)\nVALUES ('{}', '{}');\n".format(
         state, ufs[i]))
 
 
 df = pd.read_csv('cities.csv', sep=';', encoding='latin-1').iloc[:, 0]
 
 for row in df:
-    print("INSERT INTO tb_cidade(nome_cidade, id_estado)\nVALUES (\"{}\", {});\n".format(
-        row[2:], ufs.index(row[:2]) + 1))
+    print("INSERT INTO tb_cidade(nome_cidade, id_estado)\nVALUES ('{}', {});\n".format(
+        row[2:].replace('\'', '\'\''), ufs.index(row[:2]) + 1))
