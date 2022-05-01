@@ -10,6 +10,7 @@ states = [
     'Amazonas',
     'Bahia',
     'Ceará',
+    'Distrito Federal',
     'Espírito Santo',
     'Goiás',
     'Maranhão',
@@ -29,8 +30,7 @@ states = [
     'Santa Catarina',
     'São Paulo',
     'Sergipe',
-    'Tocantins',
-    'Distrito Federal'
+    'Tocantins'
 ]
 
 ufs = [
@@ -40,6 +40,7 @@ ufs = [
     'AM',
     'BA',
     'CE',
+    'DF',
     'ES',
     'GO',
     'MA',
@@ -59,17 +60,30 @@ ufs = [
     'SC',
     'SP',
     'SE',
-    'TO',
-    'DF'
+    'TO'
 ]
 
-for i, state in enumerate(states):
-    print("INSERT INTO tb_estado(nome_estado, sigla_estado)\nVALUES ('{}', '{}');\n".format(
-        state, ufs[i]))
+# for i, state in enumerate(states):
+#     print("('{}', '{}'),".format(
+#         ufs[i], state))
 
 
 df = pd.read_csv('cities.csv', sep=';', encoding='latin-1').iloc[:, 0]
 
+i = 1
 for row in df:
-    print("INSERT INTO tb_cidade(nome_cidade, id_estado)\nVALUES ('{}', {});\n".format(
-        row[2:].replace('\'', '\'\''), ufs.index(row[:2]) + 1))
+    print("({}, '{}', {}),".format(i, row[2:].replace(
+        '\'', '\'\''), ufs.index(row[:2]) + 1))
+    i += 1
+
+
+# for i, state in enumerate(states):
+#     print("INSERT INTO tb_estado(nome_estado, sigla_estado)\nVALUES ('{}', '{}');\n".format(
+#         state, ufs[i]))
+
+
+# df = pd.read_csv('cities.csv', sep=';', encoding='latin-1').iloc[:, 0]
+
+# for row in df:
+#     print("INSERT INTO tb_cidade(nome_cidade, id_estado)\nVALUES ('{}', {});\n".format(
+#         row[2:].replace('\'', '\'\''), ufs.index(row[:2]) + 1))
