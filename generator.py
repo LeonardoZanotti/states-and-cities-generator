@@ -63,17 +63,28 @@ ufs = [
     'TO'
 ]
 
+# sql
 # for i, state in enumerate(states):
 #     print("('{}', '{}'),".format(
 #         ufs[i], state))
 
+# json
+# for i, state in enumerate(states):
+#     print("{" + "\"id\": {}, \"nome\": \"{}\", \"sigla\": \"{}\"".format(i+1, state, ufs[i]) + "},")
 
 df = pd.read_csv('cities.csv', sep=';', encoding='latin-1').iloc[:, 0]
 
 i = 1
+
+# sql
+# for row in df:
+#     print("({}, '{}', {}),".format(i, row[2:].replace(
+#         '\'', '\'\''), ufs.index(row[:2]) + 1))
+#     i += 1
+
+# json
 for row in df:
-    print("({}, '{}', {}),".format(i, row[2:].replace(
-        '\'', '\'\''), ufs.index(row[:2]) + 1))
+    print("{" + "\"id\": {}, \"nome\": \"{}\", \"estado\": {}".format(i, row[2:], ufs.index(row[:2]) + 1) + "},")
     i += 1
 
 
